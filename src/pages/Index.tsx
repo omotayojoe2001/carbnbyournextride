@@ -27,9 +27,11 @@ const Index = () => {
               Show all <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto md:grid md:grid-cols-1 sm:md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 pb-4 snap-x snap-mandatory">
             {guestFavorites.map((car) => (
-              <CarCard key={car.id} {...car} />
+              <div key={car.id} className="flex-shrink-0 w-64 md:w-auto snap-start">
+                <CarCard {...car} />
+              </div>
             ))}
           </div>
         </section>
@@ -42,9 +44,11 @@ const Index = () => {
               Show all <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto md:grid md:grid-cols-1 sm:md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 pb-4 snap-x snap-mandatory">
             {popularCars.map((car) => (
-              <CarCard key={car.id} {...car} />
+              <div key={car.id} className="flex-shrink-0 w-64 md:w-auto snap-start">
+                <CarCard {...car} />
+              </div>
             ))}
           </div>
         </section>

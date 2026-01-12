@@ -80,54 +80,46 @@ const SearchBar = ({ expanded = false, onExpandChange }: SearchBarProps) => {
       <div className="w-full max-w-3xl relative">
         {/* Mobile Search Bar */}
         <div className="md:hidden">
-          <div
-            className="flex flex-col gap-2 bg-background border border-border rounded-2xl p-3 search-bar-shadow"
-          >
+          <div className="flex items-center gap-1 bg-background border border-border rounded-2xl p-2 search-bar-shadow">
             <div
-              className={`flex items-center gap-3 px-3 py-2 rounded-xl ${
-                activeField === "where" ? "bg-secondary" : ""
-              }`}
+              className={`flex-1 px-2 py-2 rounded-xl ${activeField === "where" ? "bg-secondary" : ""}`}
               onClick={() => handleFieldClick("where")}
             >
-              <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-[10px] font-semibold uppercase tracking-wide">Where</span>
-                <input
-                  type="text"
-                  placeholder="Search destinations"
-                  value={where}
-                  onChange={(e) => setWhere(e.target.value)}
-                  className="text-xs text-muted-foreground bg-transparent outline-none placeholder:text-muted-foreground w-full"
-                  onClick={(e) => e.stopPropagation()}
-                  onFocus={() => handleFieldClick("where")}
-                />
-              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-wide">Where</span>
+              <input
+                type="text"
+                placeholder="Search"
+                value={where}
+                onChange={(e) => setWhere(e.target.value)}
+                className="text-xs text-muted-foreground bg-transparent outline-none placeholder:text-muted-foreground w-full"
+                onClick={(e) => e.stopPropagation()}
+                onFocus={() => handleFieldClick("where")}
+              />
             </div>
-            <div className="flex gap-2">
-              <div
-                className={`flex-1 px-3 py-2 rounded-xl ${activeField === "when" ? "bg-secondary" : ""}`}
-                onClick={() => handleFieldClick("when")}
-              >
-                <span className="text-[10px] font-semibold uppercase tracking-wide">When</span>
-                <p className={`text-xs truncate ${dateRange?.from ? "text-foreground" : "text-muted-foreground"}`}>
-                  {formatDateRange()}
-                </p>
-              </div>
-              <div
-                className={`flex-1 px-3 py-2 rounded-xl ${activeField === "who" ? "bg-secondary" : ""}`}
-                onClick={() => handleFieldClick("who")}
-              >
-                <span className="text-[10px] font-semibold uppercase tracking-wide">Who</span>
-                <p className={`text-xs truncate ${totalPassengers > 1 ? "text-foreground" : "text-muted-foreground"}`}>
-                  {totalPassengers > 1 ? passengersLabel : "Add passengers"}
-                </p>
-              </div>
-              <button 
-                onClick={handleSearch}
-                className="p-2.5 bg-foreground rounded-xl hover:bg-foreground/90 smooth-transition"
-              >
-                <Search className="w-4 h-4 text-background" strokeWidth={2.5} />
-              </button>
+            <div
+              className={`flex-1 px-2 py-2 rounded-xl ${activeField === "when" ? "bg-secondary" : ""}`}
+              onClick={() => handleFieldClick("when")}
+            >
+              <span className="text-[9px] font-semibold uppercase tracking-wide">When</span>
+              <p className={`text-xs truncate ${dateRange?.from ? "text-foreground" : "text-muted-foreground"}`}>
+                {formatDateRange()}
+              </p>
             </div>
+            <div
+              className={`flex-1 px-2 py-2 rounded-xl ${activeField === "who" ? "bg-secondary" : ""}`}
+              onClick={() => handleFieldClick("who")}
+            >
+              <span className="text-[9px] font-semibold uppercase tracking-wide">Who</span>
+              <p className={`text-xs truncate ${totalPassengers > 1 ? "text-foreground" : "text-muted-foreground"}`}>
+                {totalPassengers > 1 ? passengersLabel : "Add passengers"}
+              </p>
+            </div>
+            <button 
+              onClick={handleSearch}
+              className="p-2.5 bg-foreground rounded-xl hover:bg-foreground/90 smooth-transition"
+            >
+              <Search className="w-4 h-4 text-background" strokeWidth={2.5} />
+            </button>
           </div>
         </div>
 

@@ -55,7 +55,7 @@ const CategoryFilter = ({ onCategoryChange }: CategoryFilterProps) => {
       {/* Categories */}
       <div
         ref={scrollRef}
-        className="flex items-center gap-3 overflow-x-auto hide-scrollbar px-12 scroll-smooth"
+        className="flex items-center gap-2 md:gap-3 overflow-x-auto hide-scrollbar px-12 scroll-smooth"
       >
         {categories.map((category) => {
           const Icon = category.icon;
@@ -65,11 +65,11 @@ const CategoryFilter = ({ onCategoryChange }: CategoryFilterProps) => {
               onClick={() => handleCategoryClick(category.id)}
               className={
                 activeCategory === category.id
-                  ? "category-pill-active flex items-center gap-2 whitespace-nowrap"
-                  : "category-pill flex items-center gap-2 whitespace-nowrap"
+                  ? "category-pill-active flex items-center gap-2 whitespace-nowrap text-xs md:text-sm"
+                  : "category-pill flex items-center gap-2 whitespace-nowrap text-xs md:text-sm"
               }
             >
-              <Icon className="w-4 h-4" strokeWidth={1.5} />
+              <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" strokeWidth={1.5} />
               <span>{category.label}</span>
             </button>
           );
@@ -85,9 +85,9 @@ const CategoryFilter = ({ onCategoryChange }: CategoryFilterProps) => {
       </button>
 
       {/* Filters Button */}
-      <button className="flex items-center gap-2 px-4 py-2.5 border border-border rounded-xl hover:border-foreground smooth-transition whitespace-nowrap">
-        <SlidersHorizontal className="w-4 h-4" />
-        <span className="text-sm font-medium">Filters</span>
+      <button className="flex items-center gap-2 px-4 py-2.5 border border-border rounded-xl hover:border-foreground smooth-transition whitespace-nowrap text-xs md:text-sm">
+        <SlidersHorizontal className="w-3.5 h-3.5 md:w-4 md:h-4" />
+        <span className="font-medium">Filters</span>
       </button>
     </div>
   );
