@@ -12,17 +12,44 @@ const GetStarted = () => {
     vehicleModel: "",
     vehicleYear: "",
     vehicleValue: "",
+    description: "",
+    pricePerMile: "",
+    pricePerHour: "",
+    amenities: [] as string[],
     ownerName: "",
     ownerPhone: "",
-    ownerEmail: "",
-    hasDriver: false,
-    driverName: "",
-    driverPhone: ""
+    ownerEmail: ""
   });
 
+  const availableAmenities = [
+    "Professional driver",
+    "Air conditioning", 
+    "Leather seats",
+    "WiFi available",
+    "Phone charger",
+    "Water bottles",
+    "Insurance coverage",
+    "24/7 support",
+    "Bluetooth audio",
+    "Premium sound system",
+    "Tinted windows",
+    "Sunroof",
+    "GPS navigation",
+    "Child car seats available"
+  ];
+
+  const toggleAmenity = (amenity: string) => {
+    setFormData(prev => ({
+      ...prev,
+      amenities: prev.amenities.includes(amenity)
+        ? prev.amenities.filter(a => a !== amenity)
+        : [...prev.amenities, amenity]
+    }));
+  };
+
   const handleNext = () => {
-    if (step < 2) setStep(step + 1);
-    else if (step === 2) setStep(3); // Show success page
+    if (step < 3) setStep(step + 1);
+    else if (step === 3) setStep(4);
   };
 
   const handleBack = () => {
@@ -41,11 +68,11 @@ const GetStarted = () => {
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">List your luxury car</h1>
-          <p className="text-muted-foreground">Step {step} of 2</p>
+          <p className="text-muted-foreground">Step {step} of 3</p>
         </div>
 
         <div className="flex items-center gap-4 mb-8">
-          {[1, 2].map((i) => (
+          {[1, 2, 3].map((i) => (
             <div key={i} className={`flex-1 h-2 rounded-full ${i <= step ? "bg-foreground" : "bg-secondary"}`} />
           ))}
         </div>
@@ -108,6 +135,60 @@ const GetStarted = () => {
         )}
 
         {step === 2 && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-semibold">Pricing & Amenities</h2>
+            <div>
+              <label className="block text-sm font-medium mb-2">Vehicle Description</label>
+              <textarea
+                placeholder="Describe your vehicle's features, condition, and any special amenities..."
+                rows={4}
+                className="w-full px-4 py-3 border border-border rounded-lg"
+                value={formData.description}
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Price per Mile (₦)</label>
+                <input
+                  type="number"
+                  placeholder="1500"
+                  className="w-full px-4 py-3 border border-border rounded-lg"
+                  value={formData.pricePerMile}
+                  onChange={(e) => setFormData({...formData, pricePerMile: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Price per Hour (₦)</label>
+                <input
+                  type="number"
+                  placeholder="8000"
+                  className="w-full px-4 py-3 border border-border rounded-lg"
+                  value={formData.pricePerHour}
+                  onChange={(e) => setFormData({...formData, pricePerHour: e.target.value})}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-3">What's Included (Select all that apply)</label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {availableAmenities.map((amenity) => (
+                  <label key={amenity} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.amenities.includes(amenity)}
+                      onChange={() => toggleAmenity(amenity)}
+                      className="rounded"
+                    />
+                    <span className="text-sm">{amenity}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">Owner Information & Documents</h2>
             <div className="space-y-4">
@@ -175,7 +256,7 @@ const GetStarted = () => {
           </div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <div className="space-y-6">
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
@@ -231,17 +312,17 @@ const GetStarted = () => {
         )}
 
         <div className="flex justify-between mt-8">
-          {step > 1 && step < 3 && (
+          {step > 1 && step < 4 && (
             <button onClick={handleBack} className="btn-outline px-6 py-3 rounded-lg">
               Back
             </button>
           )}
           <div className="ml-auto">
-            {step < 2 ? (
+            {step < 3 ? (
               <button onClick={handleNext} className="btn-primary px-6 py-3 rounded-lg">
                 Next
               </button>
-            ) : step === 2 ? (
+            ) : step === 3 ? (
               <button onClick={handleNext} className="btn-primary px-6 py-3 rounded-lg">
                 Submit Application
               </button>
