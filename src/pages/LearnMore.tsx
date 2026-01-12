@@ -125,25 +125,22 @@ const LearnMore = () => {
         <section className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <Users className="w-6 h-6" />
-            <h2 className="text-2xl font-bold">Driver Management</h2>
+            <h2 className="text-2xl font-bold">Professional Drivers</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-3">Use Our Drivers</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+          <div className="bg-secondary rounded-xl p-6">
+            <h3 className="font-semibold mb-3">We Provide All Drivers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ul className="space-y-2 text-sm">
                 <li>• Professional, uniformed drivers</li>
                 <li>• Background checked and trained</li>
-                <li>• No recruitment hassle</li>
-                <li>• We handle driver payments</li>
+                <li>• Corporate appearance standards</li>
+                <li>• No recruitment hassle for you</li>
               </ul>
-            </div>
-            <div className="border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-3">Bring Your Own Driver</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Must pass background check</li>
-                <li>• Professional training required</li>
-                <li>• Uniform provided by Carbnb</li>
-                <li>• You manage driver payments</li>
+              <ul className="space-y-2 text-sm">
+                <li>• We handle all driver payments</li>
+                <li>• 24/7 driver support and management</li>
+                <li>• Regular performance monitoring</li>
+                <li>• Replacement drivers when needed</li>
               </ul>
             </div>
           </div>

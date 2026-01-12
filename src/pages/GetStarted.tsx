@@ -21,7 +21,8 @@ const GetStarted = () => {
   });
 
   const handleNext = () => {
-    if (step < 3) setStep(step + 1);
+    if (step < 2) setStep(step + 1);
+    else if (step === 2) setStep(3); // Show success page
   };
 
   const handleBack = () => {
@@ -40,11 +41,11 @@ const GetStarted = () => {
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">List your luxury car</h1>
-          <p className="text-muted-foreground">Step {step} of 3</p>
+          <p className="text-muted-foreground">Step {step} of 2</p>
         </div>
 
         <div className="flex items-center gap-4 mb-8">
-          {[1, 2, 3].map((i) => (
+          {[1, 2].map((i) => (
             <div key={i} className={`flex-1 h-2 rounded-full ${i <= step ? "bg-foreground" : "bg-secondary"}`} />
           ))}
         </div>
@@ -97,7 +98,7 @@ const GetStarted = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Upload Photos</label>
+              <label className="block text-sm font-medium mb-2">Upload Vehicle Photos</label>
               <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
                 <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
                 <p className="text-sm text-muted-foreground">Upload at least 5 high-quality photos</p>
@@ -108,7 +109,7 @@ const GetStarted = () => {
 
         {step === 2 && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold">Owner Information</h2>
+            <h2 className="text-xl font-semibold">Owner Information & Documents</h2>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Full Name</label>
@@ -138,71 +139,113 @@ const GetStarted = () => {
                 />
               </div>
             </div>
+            <div className="space-y-4">
+              <h3 className="font-medium">Required Documents</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Vehicle Registration</label>
+                  <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
+                    <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
+                    <p className="text-xs text-muted-foreground">Upload registration document</p>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Insurance Certificate</label>
+                  <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
+                    <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
+                    <p className="text-xs text-muted-foreground">Upload insurance document</p>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Owner ID (Driver's License/NIN)</label>
+                  <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
+                    <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
+                    <p className="text-xs text-muted-foreground">Upload valid ID</p>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Vehicle Inspection Report</label>
+                  <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
+                    <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
+                    <p className="text-xs text-muted-foreground">Upload inspection certificate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
         {step === 3 && (
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold">Driver Assignment</h2>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="hasDriver"
-                  checked={formData.hasDriver}
-                  onChange={(e) => setFormData({...formData, hasDriver: e.target.checked})}
-                />
-                <label htmlFor="hasDriver" className="text-sm">I have my own driver</label>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                <Check className="w-8 h-8 text-green-600" />
               </div>
-              
-              {formData.hasDriver && (
-                <div className="space-y-4 pl-6">
+              <h2 className="text-xl font-semibold mb-2">Application Submitted Successfully!</h2>
+              <p className="text-muted-foreground mb-6">
+                Thank you for your interest in becoming a Carbnb host. We've received your application and will review it within 48 hours.
+              </p>
+            </div>
+            <div className="bg-secondary rounded-lg p-6">
+              <h3 className="font-semibold mb-3">What happens next?</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-foreground text-background rounded-full flex items-center justify-center text-xs font-bold mt-0.5">1</div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Driver Name</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-border rounded-lg"
-                      value={formData.driverName}
-                      onChange={(e) => setFormData({...formData, driverName: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Driver Phone</label>
-                    <input
-                      type="tel"
-                      className="w-full px-4 py-3 border border-border rounded-lg"
-                      value={formData.driverPhone}
-                      onChange={(e) => setFormData({...formData, driverPhone: e.target.value})}
-                    />
+                    <p className="font-medium">Document Verification (24-48 hours)</p>
+                    <p className="text-muted-foreground">Our team will verify your vehicle and documents</p>
                   </div>
                 </div>
-              )}
-              
-              {!formData.hasDriver && (
-                <div className="bg-secondary p-4 rounded-lg">
-                  <p className="text-sm">We'll assign a vetted professional driver to your vehicle. All drivers are uniformed and background-checked.</p>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-foreground text-background rounded-full flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                  <div>
+                    <p className="font-medium">Vehicle Inspection</p>
+                    <p className="text-muted-foreground">Schedule a physical inspection of your vehicle</p>
+                  </div>
                 </div>
-              )}
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-foreground text-background rounded-full flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                  <div>
+                    <p className="font-medium">Driver Assignment</p>
+                    <p className="text-muted-foreground">We'll assign a vetted professional driver to your vehicle</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-foreground text-background rounded-full flex items-center justify-center text-xs font-bold mt-0.5">4</div>
+                  <div>
+                    <p className="font-medium">Go Live</p>
+                    <p className="text-muted-foreground">Your vehicle will be listed and ready to accept bookings</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-4">
+                We'll contact you at <strong>{formData.ownerEmail}</strong> with updates on your application status.
+              </p>
+              <Link to="/" className="btn-primary px-6 py-3 rounded-lg inline-block">
+                Return to Home
+              </Link>
             </div>
           </div>
         )}
 
         <div className="flex justify-between mt-8">
-          {step > 1 && (
+          {step > 1 && step < 3 && (
             <button onClick={handleBack} className="btn-outline px-6 py-3 rounded-lg">
               Back
             </button>
           )}
           <div className="ml-auto">
-            {step < 3 ? (
+            {step < 2 ? (
               <button onClick={handleNext} className="btn-primary px-6 py-3 rounded-lg">
                 Next
               </button>
-            ) : (
-              <button className="btn-primary px-6 py-3 rounded-lg">
+            ) : step === 2 ? (
+              <button onClick={handleNext} className="btn-primary px-6 py-3 rounded-lg">
                 Submit Application
               </button>
-            )}
+            ) : null}
           </div>
         </div>
       </main>
