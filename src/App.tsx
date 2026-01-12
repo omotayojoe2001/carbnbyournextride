@@ -26,6 +26,8 @@ import Vehicles from "./pages/profile/Vehicles";
 import Reservations from "./pages/profile/Reservations";
 import Earnings from "./pages/profile/Earnings";
 import Support from "./pages/profile/Support";
+import GetStarted from "./pages/GetStarted";
+import LearnMore from "./pages/LearnMore";
 // Help articles
 import HowToBook from "./pages/help/HowToBook";
 import CancellationPolicy from "./pages/help/CancellationPolicy";
@@ -76,6 +78,8 @@ const App = () => (
           <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/refer" element={<ReferHost />} />
           <Route path="/cohost" element={<FindCohost />} />
+          <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/learn-more" element={<LearnMore />} />
           {/* Help articles */}
           <Route path="/help/booking" element={<HowToBook />} />
           <Route path="/help/cancellation" element={<CancellationPolicy />} />

@@ -74,9 +74,9 @@ const FoodMenu = () => {
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="flex overflow-x-auto md:grid md:grid-cols-1 lg:md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mb-8 pb-4 snap-x snap-mandatory">
           {filteredMenu.map(item => (
-            <div key={item.id} className="border border-border rounded-xl overflow-hidden hover:shadow-card-hover smooth-transition">
+            <div key={item.id} className="flex-shrink-0 w-64 md:w-auto snap-start border border-border rounded-xl overflow-hidden hover:shadow-card-hover smooth-transition">
               <div className="aspect-video relative">
                 <img
                   src={item.image}

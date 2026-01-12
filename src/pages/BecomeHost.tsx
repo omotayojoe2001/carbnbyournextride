@@ -53,12 +53,12 @@ const BecomeHost = () => {
                 and you earn from every mile and hour.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
+                <Link to="/get-started" className="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
                   Get started
-                </button>
-                <button className="btn-outline px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-2">
+                </Link>
+                <Link to="/learn-more" className="btn-outline px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-2">
                   Learn more <ArrowRight className="w-5 h-5" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
@@ -152,9 +152,9 @@ const BecomeHost = () => {
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Join hundreds of car owners earning premium income with Carbnb.
           </p>
-          <button className="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
+          <Link to="/get-started" className="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
             List your car today
-          </button>
+          </Link>
         </section>
       </main>
 
