@@ -8,6 +8,7 @@ import LanguageSelector from "./LanguageSelector";
 const Header = () => {
   const location = useLocation();
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const isHomePage = location.pathname === "/";
 
   const navTabs = [
     { id: "cars", label: "Cars", icon: Car, path: "/" },
@@ -57,10 +58,12 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="pb-4">
-          <SearchBar expanded={isSearchExpanded} onExpandChange={setIsSearchExpanded} />
-        </div>
+        {/* Search Bar - Only on Homepage */}
+        {isHomePage && (
+          <div className="pb-4">
+            <SearchBar expanded={isSearchExpanded} onExpandChange={setIsSearchExpanded} />
+          </div>
+        )}
       </div>
     </header>
   );

@@ -18,7 +18,11 @@ const GetStarted = () => {
     amenities: [] as string[],
     ownerName: "",
     ownerPhone: "",
-    ownerEmail: ""
+    ownerEmail: "",
+    ownerIsDriver: false,
+    driverName: "",
+    driverPhone: "",
+    driverLicense: ""
   });
 
   const availableAmenities = [
@@ -220,6 +224,59 @@ const GetStarted = () => {
                 />
               </div>
             </div>
+
+            {/* Driver Assignment */}
+            <div className="border-t border-border pt-6">
+              <h3 className="font-semibold mb-4">Driver Information</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <input
+                  type="checkbox"
+                  id="ownerIsDriver"
+                  checked={formData.ownerIsDriver}
+                  onChange={(e) => setFormData({...formData, ownerIsDriver: e.target.checked})}
+                  className="rounded"
+                />
+                <label htmlFor="ownerIsDriver" className="text-sm font-medium">
+                  I will be the driver for this vehicle
+                </label>
+              </div>
+
+              {!formData.ownerIsDriver && (
+                <div className="space-y-4 bg-secondary p-4 rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Please provide your driver's information
+                  </p>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Driver Full Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 border border-border rounded-lg"
+                      value={formData.driverName}
+                      onChange={(e) => setFormData({...formData, driverName: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Driver Phone Number</label>
+                    <input
+                      type="tel"
+                      className="w-full px-4 py-3 border border-border rounded-lg"
+                      value={formData.driverPhone}
+                      onChange={(e) => setFormData({...formData, driverPhone: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Driver License Number</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 border border-border rounded-lg"
+                      value={formData.driverLicense}
+                      onChange={(e) => setFormData({...formData, driverLicense: e.target.value})}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="space-y-4">
               <h3 className="font-medium">Required Documents</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -245,10 +302,10 @@ const GetStarted = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Vehicle Inspection Report</label>
+                  <label className="block text-sm font-medium mb-2">Driver's License</label>
                   <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
                     <Upload className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
-                    <p className="text-xs text-muted-foreground">Upload inspection certificate</p>
+                    <p className="text-xs text-muted-foreground">Upload driver's license</p>
                   </div>
                 </div>
               </div>

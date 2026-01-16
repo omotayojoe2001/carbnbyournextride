@@ -4,7 +4,7 @@ import MobileNav from "@/components/MobileNav";
 import CategoryFilter from "@/components/CategoryFilter";
 import CarCard from "@/components/CarCard";
 import { cars } from "@/data/mockData";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Navigation, Clock, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -82,21 +82,27 @@ const Index = () => {
           <h2 className="section-title mb-6">How our pricing works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 border border-border rounded-xl">
-              <div className="text-3xl mb-4">📍</div>
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4">
+                <Navigation className="w-6 h-6" />
+              </div>
               <h3 className="font-semibold mb-2">Miles-based pricing</h3>
               <p className="text-sm text-muted-foreground">
                 Pay for the distance traveled. Our meter calculates the exact miles covered during your journey.
               </p>
             </div>
             <div className="p-6 border border-border rounded-xl">
-              <div className="text-3xl mb-4">⏱️</div>
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6" />
+              </div>
               <h3 className="font-semibold mb-2">Time-based pricing</h3>
               <p className="text-sm text-muted-foreground">
                 Separate timer for time spent. Perfect for events, wait times, and extended bookings.
               </p>
             </div>
             <div className="p-6 border border-border rounded-xl">
-              <div className="text-3xl mb-4">🎯</div>
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4">
+                <Target className="w-6 h-6" />
+              </div>
               <h3 className="font-semibold mb-2">Transparent totals</h3>
               <p className="text-sm text-muted-foreground">
                 Both meters display in real-time. You always know exactly what you're paying for.

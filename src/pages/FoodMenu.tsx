@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
 import { foodMenu } from "@/data/mockData";
 import { Clock, Plus, ShoppingBag, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface CartItem {
   id: string;
@@ -13,8 +14,10 @@ interface CartItem {
 }
 
 const FoodMenu = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [showCartAlert, setShowCartAlert] = useState(false);
 
   const categories = ["All", "Grills", "Main Dishes", "Soups", "Drinks", "Snacks"];
 
@@ -32,6 +35,8 @@ const FoodMenu = () => {
       }
       return [...prev, { id: item.id, name: item.name, price: item.price, quantity: 1 }];
     });
+    setShowCartAlert(true);
+    setTimeout(() => setShowCartAlert(false), 3000);
   };
 
   const removeFromCart = (id: string) => {
@@ -111,16 +116,26 @@ const FoodMenu = () => {
           ))}
         </div>
 
+        {/* Cart Alert */}
+        {showCartAlert && (
+          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full shadow-lg z-[60] animate-slide-up">
+            <p className="text-sm font-medium">Item added to cart!</p>
+          </div>
+        )}
+
         {/* Floating Cart */}
         {cart.length > 0 && (
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-background px-6 py-4 rounded-full shadow-elevated flex items-center gap-4 animate-slide-up">
+          <div className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-background px-6 py-4 rounded-full shadow-elevated flex items-center gap-4 z-50">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5" />
               <span className="font-medium">{cartCount} items</span>
             </div>
             <div className="w-px h-6 bg-background/20" />
             <span className="font-semibold">₦{cartTotal.toLocaleString()}</span>
-            <button className="px-4 py-2 bg-background text-foreground rounded-full text-sm font-medium hover:bg-background/90 smooth-transition">
+            <button 
+              onClick={() => navigate('/cart')}
+              className="px-4 py-2 bg-background text-foreground rounded-full text-sm font-medium hover:bg-background/90 smooth-transition"
+            >
               View Cart
             </button>
           </div>

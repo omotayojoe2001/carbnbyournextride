@@ -86,7 +86,11 @@ const Trips = () => {
         {trips.length > 0 ? (
           <div className="space-y-6">
             {trips.map((trip) => (
-              <div key={trip.id} className="border border-border rounded-xl overflow-hidden">
+              <Link 
+                key={trip.id} 
+                to={`/trip/${trip.id}`}
+                className="block border border-border rounded-xl overflow-hidden hover:shadow-card-hover smooth-transition"
+              >
                 <div className="flex">
                   <img
                     src={trip.image}
@@ -126,7 +130,7 @@ const Trips = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

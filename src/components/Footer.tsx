@@ -5,24 +5,24 @@ const Footer = () => {
   const footerLinks = {
     support: [
       { label: "Help Center", href: "/help" },
-      { label: "Safety information", href: "/safety" },
-      { label: "Cancellation options", href: "/cancellation" },
-      { label: "Our response to emergencies", href: "/emergencies" },
-      { label: "Report a concern", href: "/report" },
+      { label: "Safety information", href: "/help/safety" },
+      { label: "Cancellation options", href: "/help/cancellation" },
+      { label: "Insurance Policy", href: "/insurance" },
+      { label: "Contact Us", href: "/contact" },
     ],
     hosting: [
       { label: "List your car", href: "/become-host" },
-      { label: "Host resources", href: "/resources" },
-      { label: "Community forum", href: "/community" },
-      { label: "Driver partnership", href: "/drivers" },
-      { label: "Responsible hosting", href: "/responsible" },
+      { label: "Host Dashboard", href: "/host/dashboard" },
+      { label: "Driver Code of Conduct", href: "/driver-conduct" },
+      { label: "Refer a Host", href: "/refer" },
+      { label: "Find a Co-host", href: "/cohost" },
     ],
     carbnb: [
-      { label: "Newsroom", href: "/newsroom" },
-      { label: "New features", href: "/features" },
-      { label: "Careers", href: "/careers" },
-      { label: "Investors", href: "/investors" },
+      { label: "About Us", href: "/about" },
       { label: "Food Menu", href: "/food" },
+      { label: "Gift Cards", href: "/gift-cards" },
+      { label: "Experiences", href: "/experiences" },
+      { label: "Contact", href: "/contact" },
     ],
   };
 
@@ -76,9 +76,9 @@ const Footer = () => {
             <span>·</span>
             <Link to="/terms" className="hover:underline">Terms</Link>
             <span>·</span>
-            <Link to="/privacy" className="hover:underline">Privacy</Link>
+            <Link to="/help/privacy" className="hover:underline">Privacy</Link>
             <span>·</span>
-            <Link to="/sitemap" className="hover:underline">Sitemap</Link>
+            <Link to="/insurance" className="hover:underline">Insurance</Link>
           </div>
           <div className="flex items-center gap-6">
             <button className="flex items-center gap-2 text-sm font-medium hover:underline">

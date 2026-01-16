@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MapPin, Phone, MessageCircle, UtensilsCrossed, Navigation, Clock } from "lucide-react";
+import { MapPin, Phone, MessageCircle, UtensilsCrossed, Navigation, Clock, Share2, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import MobileNav from "@/components/MobileNav";
 
@@ -8,6 +8,8 @@ const ActiveTrip = () => {
   const [timePrice, setTimePrice] = useState(24000);
   const [distance, setDistance] = useState(8.3);
   const [duration, setDuration] = useState(48);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showSOSModal, setShowSOSModal] = useState(false);
 
   // Simulate live meter updates
   useEffect(() => {
@@ -25,9 +27,12 @@ const ActiveTrip = () => {
       {/* Header */}
       <div className="bg-background border-b border-border px-6 py-4 flex items-center justify-between">
         <h1 className="text-lg font-semibold">Active Trip</h1>
-        <div className="flex items-center gap-4">
-          <button className="p-2">
-            <MessageCircle className="w-5 h-5" />
+        <div className="flex items-center gap-2">
+          <button onClick={() => setShowShareModal(true)} className="p-2 hover:bg-secondary rounded-lg">
+            <Share2 className="w-5 h-5" />
+          </button>
+          <button onClick={() => setShowSOSModal(true)} className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+            <AlertCircle className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -105,14 +110,20 @@ const ActiveTrip = () => {
 
           {/* Contact Actions */}
           <div className="flex gap-3 mt-4">
-            <button className="flex-1 flex items-center justify-center gap-2 py-3 border border-border rounded-xl hover:bg-secondary smooth-transition">
+            <a 
+              href="tel:+2348012345678"
+              className="flex-1 flex items-center justify-center gap-2 py-3 border border-border rounded-xl hover:bg-secondary smooth-transition"
+            >
               <Phone className="w-4 h-4" />
               <span className="text-sm font-medium">Call</span>
-            </button>
-            <button className="flex-1 flex items-center justify-center gap-2 py-3 border border-border rounded-xl hover:bg-secondary smooth-transition">
+            </a>
+            <Link
+              to="/messages"
+              className="flex-1 flex items-center justify-center gap-2 py-3 border border-border rounded-xl hover:bg-secondary smooth-transition"
+            >
               <MessageCircle className="w-4 h-4" />
               <span className="text-sm font-medium">Message</span>
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -160,6 +171,43 @@ const ActiveTrip = () => {
           <p className="text-xs opacity-70 mt-2">Final amount calculated at trip end</p>
         </div>
       </div>
+
+      {/* Share Trip Modal */}
+      {showShareModal && (
+        <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4" onClick={() => setShowShareModal(false)}>
+          <div className="bg-background rounded-2xl p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-xl font-semibold mb-4">Share Trip</h3>
+            <p className="text-sm text-muted-foreground mb-4">Share your trip details with friends or family for safety</p>
+            <div className="space-y-3">
+              <button className="w-full p-3 border border-border rounded-lg hover:bg-secondary text-left">Share via WhatsApp</button>
+              <button className="w-full p-3 border border-border rounded-lg hover:bg-secondary text-left">Share via SMS</button>
+              <button className="w-full p-3 border border-border rounded-lg hover:bg-secondary text-left">Copy trip link</button>
+            </div>
+            <button onClick={() => setShowShareModal(false)} className="w-full mt-4 btn-outline py-2 rounded-lg">Close</button>
+          </div>
+        </div>
+      )}
+
+      {/* SOS Modal */}
+      {showSOSModal && (
+        <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4" onClick={() => setShowSOSModal(false)}>
+          <div className="bg-background rounded-2xl p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertCircle className="w-8 h-8 text-red-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Emergency SOS</h3>
+              <p className="text-sm text-muted-foreground mb-6">Are you in an emergency situation?</p>
+              <div className="space-y-3">
+                <a href="tel:+2348002272626" className="block w-full p-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Call Carbnb Emergency</a>
+                <a href="tel:112" className="block w-full p-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Call Police: 112</a>
+                <Link to="/report-issue" className="block w-full p-3 border border-border rounded-lg hover:bg-secondary">Report Issue</Link>
+              </div>
+              <button onClick={() => setShowSOSModal(false)} className="w-full mt-4 btn-outline py-2 rounded-lg">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <MobileNav />
     </div>

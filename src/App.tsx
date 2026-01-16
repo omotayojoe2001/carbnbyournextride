@@ -26,6 +26,25 @@ import Vehicles from "./pages/profile/Vehicles";
 import Reservations from "./pages/profile/Reservations";
 import Earnings from "./pages/profile/Earnings";
 import Support from "./pages/profile/Support";
+import Receipts from "./pages/Receipts";
+import Promotions from "./pages/Promotions";
+import PaymentMethods from "./pages/PaymentMethods";
+import SafetyCenter from "./pages/SafetyCenter";
+import ReportIssue from "./pages/ReportIssue";
+import HostDashboard from "./pages/HostDashboard";
+import LeaveReview from "./pages/LeaveReview";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import DriverProfile from "./pages/DriverProfile";
+import Terms from "./pages/Terms";
+import InsurancePolicy from "./pages/InsurancePolicy";
+import DriverConduct from "./pages/DriverConduct";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
+import BookingConfirmation from "./pages/BookingConfirmation";
+import TripDetail from "./pages/TripDetail";
+import Messages from "./pages/Messages";
 import ActiveTrip from "./pages/ActiveTrip";
 import GetStarted from "./pages/GetStarted";
 import LearnMore from "./pages/LearnMore";
@@ -79,7 +98,26 @@ const App = () => (
           <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/refer" element={<ReferHost />} />
           <Route path="/cohost" element={<FindCohost />} />
+          <Route path="/receipts" element={<Receipts />} />
+          <Route path="/promotions" element={<Promotions />} />
+          <Route path="/payment-methods" element={<PaymentMethods />} />
+          <Route path="/safety-center" element={<SafetyCenter />} />
+          <Route path="/report-issue" element={<ReportIssue />} />
+          <Route path="/host/dashboard" element={<HostDashboard />} />
+          <Route path="/review/:id" element={<LeaveReview />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/driver/:id" element={<DriverProfile />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/insurance" element={<InsurancePolicy />} />
+          <Route path="/driver-conduct" element={<DriverConduct />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
           <Route path="/trip/active" element={<ActiveTrip />} />
+          <Route path="/trip/:id" element={<TripDetail />} />
+          <Route path="/messages" element={<Messages />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/learn-more" element={<LearnMore />} />
           {/* Help articles */}
