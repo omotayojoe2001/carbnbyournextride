@@ -1,14 +1,14 @@
-import { Car, Sparkles, Utensils, Search, User } from "lucide-react";
+import { Home, Calendar, MapPin, Utensils, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const MobileNav = () => {
   const location = useLocation();
 
   const navItems = [
-    { icon: Search, label: "Explore", path: "/" },
-    { icon: Car, label: "Cars", path: "/search" },
-    { icon: Sparkles, label: "Experiences", path: "/experiences" },
-    { icon: Utensils, label: "Food", path: "/food" },
+    { icon: Home, label: "Home", path: "/" },
+    { icon: Calendar, label: "Trips", path: "/profile/trips" },
+    { icon: MapPin, label: "Maps", path: "/trip/active" },
+    { icon: Utensils, label: "Menu", path: "/food" },
     { icon: User, label: "Profile", path: "/profile" },
   ];
 
