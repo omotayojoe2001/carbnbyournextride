@@ -31,7 +31,6 @@ import Promotions from "./pages/Promotions";
 import PaymentMethodsPage from "./pages/PaymentMethods";
 import SafetyCenter from "./pages/SafetyCenter";
 import ReportIssue from "./pages/ReportIssue";
-import HostDashboard from "./pages/HostDashboard";
 import LeaveReview from "./pages/LeaveReview";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -114,7 +113,6 @@ const App = () => (
           <Route path="/safety-center" element={<SafetyCenter />} />
           <Route path="/report-issue" element={<ReportIssue />} />
           <Route path="/report-trip" element={<ReportIssue />} />
-          <Route path="/host/dashboard" element={<HostDashboard />} />
           <Route path="/review/:id" element={<LeaveReview />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
