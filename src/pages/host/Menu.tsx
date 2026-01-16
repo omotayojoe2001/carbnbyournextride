@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DollarSign, Calendar, Users, Settings, FileText, BarChart3, HelpCircle, LogOut, User } from "lucide-react";
+import { DollarSign, Calendar, Users, Settings, FileText, BarChart3, HelpCircle, LogOut, User, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HostMobileNav from "@/components/HostMobileNav";
@@ -50,7 +50,7 @@ const HostMenu = () => {
               <h2 className="text-xl font-semibold">Emmanuel O.</h2>
               <p className="text-sm text-muted-foreground">Host since 2023</p>
               <div className="flex items-center gap-4 mt-2 text-sm">
-                <span>⭐ 4.92 rating</span>
+                <span className="flex items-center gap-1"><Star className="w-4 h-4 fill-yellow-500 stroke-yellow-500" /> 4.92 rating</span>
                 <span>5 vehicles</span>
                 <span>127 trips</span>
               </div>

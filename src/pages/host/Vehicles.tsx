@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Plus, Edit, Eye, MoreVertical, Car as CarIcon } from "lucide-react";
+import { Plus, Edit, Eye, MoreVertical, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HostMobileNav from "@/components/HostMobileNav";
@@ -30,7 +30,7 @@ const HostVehicles = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-card border border-border rounded-xl p-6">
             <p className="text-sm text-muted-foreground mb-1">Total Vehicles</p>
             <p className="text-3xl font-bold">5</p>
@@ -56,10 +56,10 @@ const HostVehicles = () => {
               <thead className="bg-secondary">
                 <tr>
                   <th className="text-left p-4 font-semibold">Vehicle</th>
-                  <th className="text-left p-4 font-semibold">Status</th>
-                  <th className="text-left p-4 font-semibold">Bookings</th>
-                  <th className="text-left p-4 font-semibold">Earnings</th>
-                  <th className="text-left p-4 font-semibold">Rating</th>
+                  <th className="text-left p-4 font-semibold hidden md:table-cell">Status</th>
+                  <th className="text-left p-4 font-semibold hidden md:table-cell">Bookings</th>
+                  <th className="text-left p-4 font-semibold hidden md:table-cell">Earnings</th>
+                  <th className="text-left p-4 font-semibold hidden md:table-cell">Rating</th>
                   <th className="text-left p-4 font-semibold">Actions</th>
                 </tr>
               </thead>
@@ -72,10 +72,20 @@ const HostVehicles = () => {
                         <div>
                           <p className="font-medium">{vehicle.name}</p>
                           <p className="text-sm text-muted-foreground">ID: {vehicle.id}</p>
+                          <div className="md:hidden mt-1">
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                              vehicle.status === "Active" ? "bg-green-500/10 text-green-500" :
+                              vehicle.status === "Inactive" ? "bg-orange-500/10 text-orange-500" :
+                              "bg-red-500/10 text-red-500"
+                            }`}>
+                              {vehicle.status}
+                            </span>
+                            <span className="text-xs text-muted-foreground ml-2">{vehicle.bookings} trips · {vehicle.earnings}</span>
+                          </div>
                         </div>
                       </div>
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 hidden md:table-cell">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                         vehicle.status === "Active" ? "bg-green-500/10 text-green-500" :
                         vehicle.status === "Inactive" ? "bg-orange-500/10 text-orange-500" :
@@ -84,17 +94,17 @@ const HostVehicles = () => {
                         {vehicle.status}
                       </span>
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 hidden md:table-cell">
                       <p className="font-medium">{vehicle.bookings}</p>
                       <p className="text-xs text-muted-foreground">this month</p>
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 hidden md:table-cell">
                       <p className="font-medium">{vehicle.earnings}</p>
                       <p className="text-xs text-muted-foreground">this month</p>
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 hidden md:table-cell">
                       <p className="font-medium">{vehicle.rating}</p>
-                      <p className="text-xs text-muted-foreground">⭐ rating</p>
+                      <p className="text-xs text-muted-foreground flex items-center gap-1"><Star className="w-3 h-3 fill-yellow-500 stroke-yellow-500" /> rating</p>
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">
@@ -104,7 +114,7 @@ const HostVehicles = () => {
                         <Link to={`/host/vehicles/${vehicle.id}/edit`} className="p-2 hover:bg-secondary rounded-lg">
                           <Edit className="w-4 h-4" />
                         </Link>
-                        <button className="p-2 hover:bg-secondary rounded-lg">
+                        <button className="p-2 hover:bg-secondary rounded-lg hidden md:block">
                           <MoreVertical className="w-4 h-4" />
                         </button>
                       </div>

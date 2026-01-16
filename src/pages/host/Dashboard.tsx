@@ -21,7 +21,7 @@ const HostDashboardNew = () => {
         </div>
 
         {/* Earnings Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-card border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-muted-foreground">Today</span>
@@ -60,7 +60,7 @@ const HostDashboardNew = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-card border border-border rounded-xl p-6">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-green-500/10 rounded-lg">
