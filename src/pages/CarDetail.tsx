@@ -91,7 +91,7 @@ const CarDetail = () => {
                   <h2 className="text-xl font-semibold">Luxury car with professional driver</h2>
                   <p className="text-muted-foreground mt-1">4 passengers · Automatic · Premium</p>
                 </div>
-                <Link to={`/driver/${car.driver.name}`}>
+                <Link to={`/driver/${car.driver.id}`}>
                   <img src={car.driver.image} alt={car.driver.name} className="w-14 h-14 rounded-full object-cover hover:opacity-80" />
                 </Link>
               </div>
@@ -136,11 +136,11 @@ const CarDetail = () => {
             <div className="pb-8 border-b border-border">
               <h3 className="text-lg font-semibold mb-4">Your Driver</h3>
               <div className="flex items-start gap-4">
-                <Link to={`/driver/${car.driver.name}`}>
+                <Link to={`/driver/${car.driver.id}`}>
                   <img src={car.driver.image} alt={car.driver.name} className="w-16 h-16 rounded-full object-cover hover:opacity-80" />
                 </Link>
                 <div className="flex-1">
-                  <Link to={`/driver/${car.driver.name}`} className="font-semibold hover:underline">{car.driver.name}</Link>
+                  <Link to={`/driver/${car.driver.id}`} className="font-semibold hover:underline">{car.driver.name}</Link>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                     <Star className="w-4 h-4 fill-foreground stroke-foreground" />
                     <span>{car.driver.rating.toFixed(2)} rating</span>
@@ -150,7 +150,7 @@ const CarDetail = () => {
                   <p className="text-sm text-muted-foreground mt-2">
                     Professional chauffeur with extensive experience in luxury vehicles. Known for punctuality and excellent service.
                   </p>
-                  <Link to={`/driver/${car.driver.name}`} className="text-sm font-medium underline mt-2 inline-block">
+                  <Link to={`/driver/${car.driver.id}`} className="text-sm font-medium underline mt-2 inline-block">
                     View driver profile
                   </Link>
                 </div>

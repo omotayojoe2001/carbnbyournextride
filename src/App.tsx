@@ -48,6 +48,14 @@ import Messages from "./pages/Messages";
 import ActiveTrip from "./pages/ActiveTrip";
 import GetStarted from "./pages/GetStarted";
 import LearnMore from "./pages/LearnMore";
+import ScrollToTop from "./components/ScrollToTop";
+import ModeToggle from "./components/ModeToggle";
+// Host pages
+import HostDashboard from "./pages/host/Dashboard";
+import HostVehicles from "./pages/host/Vehicles";
+import HostBookings from "./pages/host/Bookings";
+import HostMessages from "./pages/host/Messages";
+import HostMenu from "./pages/host/Menu";
 // Help articles
 import HowToBook from "./pages/help/HowToBook";
 import CancellationPolicy from "./pages/help/CancellationPolicy";
@@ -74,6 +82,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
+        <ModeToggle />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/car/:id" element={<CarDetail />} />
@@ -138,6 +148,12 @@ const App = () => (
           <Route path="/help/verification" element={<Verification />} />
           <Route path="/help/privacy" element={<Privacy />} />
           <Route path="/help/delete-account" element={<DeleteAccount />} />
+          {/* Host routes */}
+          <Route path="/host/dashboard" element={<HostDashboard />} />
+          <Route path="/host/vehicles" element={<HostVehicles />} />
+          <Route path="/host/bookings" element={<HostBookings />} />
+          <Route path="/host/messages" element={<HostMessages />} />
+          <Route path="/host/menu" element={<HostMenu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
