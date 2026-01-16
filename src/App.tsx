@@ -28,7 +28,7 @@ import Earnings from "./pages/profile/Earnings";
 import Support from "./pages/profile/Support";
 import Receipts from "./pages/Receipts";
 import Promotions from "./pages/Promotions";
-import PaymentMethods from "./pages/PaymentMethods";
+import PaymentMethodsPage from "./pages/PaymentMethods";
 import SafetyCenter from "./pages/SafetyCenter";
 import ReportIssue from "./pages/ReportIssue";
 import HostDashboard from "./pages/HostDashboard";
@@ -100,9 +100,10 @@ const App = () => (
           <Route path="/cohost" element={<FindCohost />} />
           <Route path="/receipts" element={<Receipts />} />
           <Route path="/promotions" element={<Promotions />} />
-          <Route path="/payment-methods" element={<PaymentMethods />} />
+          <Route path="/payment-methods" element={<PaymentMethodsPage />} />
           <Route path="/safety-center" element={<SafetyCenter />} />
           <Route path="/report-issue" element={<ReportIssue />} />
+          <Route path="/report-trip" element={<ReportIssue />} />
           <Route path="/host/dashboard" element={<HostDashboard />} />
           <Route path="/review/:id" element={<LeaveReview />} />
           <Route path="/about" element={<About />} />
