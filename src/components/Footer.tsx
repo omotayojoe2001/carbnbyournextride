@@ -1,7 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Globe, Car } from "lucide-react";
 
 const Footer = () => {
+  const location = useLocation();
+  
+  // Only show footer on these pages
+  const showFooterPages = [
+    '/help',
+    '/about',
+    '/contact',
+    '/terms',
+    '/insurance',
+    '/driver-conduct',
+    '/support',
+  ];
+
+  const shouldShowFooter = showFooterPages.some(page => location.pathname.includes(page));
+
+  if (!shouldShowFooter) {
+    return null;
+  }
   const footerLinks = {
     support: [
       { label: "Help Center", href: "/help" },
