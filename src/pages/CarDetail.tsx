@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Share, Heart, Star, Shield, Check, Award, Users, Car as CarIcon, Fuel, Settings, Calendar, MapPin, Plus, X } from "lucide-react";
 import { cars } from "@/data/mockData";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
 import { useState } from "react";
@@ -37,6 +38,8 @@ const CarDetail = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
+      <Header />
+
       <main className="max-w-[1200px] mx-auto px-6 md:px-10 py-6">
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium mb-6 hover:underline">
           <ArrowLeft className="w-4 h-4" /> Back to listings
