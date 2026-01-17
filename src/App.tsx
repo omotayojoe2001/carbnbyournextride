@@ -55,6 +55,12 @@ import HostVehicles from "./pages/host/Vehicles";
 import HostBookings from "./pages/host/Bookings";
 import HostMessages from "./pages/host/Messages";
 import HostMenu from "./pages/host/Menu";
+import HostChatDetail from "./pages/host/ChatDetail";
+import AddVehicle from "./pages/host/AddVehicle";
+import HostEarnings from "./pages/host/Earnings";
+import HostProfile from "./pages/host/Profile";
+import HostSettings from "./pages/host/Settings";
+import HostCalendar from "./pages/host/Calendar";
 // Help articles
 import HowToBook from "./pages/help/HowToBook";
 import CancellationPolicy from "./pages/help/CancellationPolicy";
@@ -149,9 +155,21 @@ const App = () => (
           {/* Host routes */}
           <Route path="/host/dashboard" element={<HostDashboard />} />
           <Route path="/host/vehicles" element={<HostVehicles />} />
+          <Route path="/host/vehicles/add" element={<AddVehicle />} />
+          <Route path="/host/vehicles/:id/edit" element={<AddVehicle />} />
           <Route path="/host/bookings" element={<HostBookings />} />
+          <Route path="/host/bookings/:id" element={<HostBookings />} />
           <Route path="/host/messages" element={<HostMessages />} />
+          <Route path="/host/messages/:id" element={<HostChatDetail />} />
           <Route path="/host/menu" element={<HostMenu />} />
+          <Route path="/host/earnings" element={<HostEarnings />} />
+          <Route path="/host/calendar" element={<HostCalendar />} />
+          <Route path="/host/profile" element={<HostProfile />} />
+          <Route path="/host/settings" element={<HostSettings />} />
+          <Route path="/host/policies" element={<HostSettings />} />
+          <Route path="/host/reports" element={<HostEarnings />} />
+          <Route path="/host/drivers" element={<HostVehicles />} />
+          <Route path="/host/resources" element={<HostMenu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -90,10 +90,16 @@ const HostBookings = () => {
                 <div className="flex items-center gap-2">
                   {activeTab === "pending" && (
                     <>
-                      <button className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+                      <button 
+                        onClick={() => alert('Booking accepted!')}
+                        className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                      >
                         <Check className="w-5 h-5" />
                       </button>
-                      <button className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                      <button 
+                        onClick={() => alert('Booking declined!')}
+                        className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                      >
                         <X className="w-5 h-5" />
                       </button>
                     </>

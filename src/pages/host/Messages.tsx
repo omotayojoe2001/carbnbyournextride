@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Send } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,7 +32,7 @@ const HostMessages = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[600px]">
           {/* Chat List */}
-          <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="lg:col-span-3 bg-card border border-border rounded-xl overflow-hidden">
             <div className="p-4 border-b border-border">
               <input
                 type="text"
@@ -41,12 +42,10 @@ const HostMessages = () => {
             </div>
             <div className="overflow-y-auto h-[calc(600px-73px)]">
               {chats.map((chat) => (
-                <button
+                <Link
                   key={chat.id}
-                  onClick={() => setSelectedChat(chat.id)}
-                  className={`w-full p-4 flex items-start gap-3 hover:bg-secondary border-b border-border text-left ${
-                    selectedChat === chat.id ? "bg-secondary" : ""
-                  }`}
+                  to={`/host/messages/${chat.id}`}
+                  className="w-full p-4 flex items-start gap-3 hover:bg-secondary border-b border-border text-left block"
                 >
                   <img src={chat.image} alt={chat.guest} className="w-12 h-12 rounded-full object-cover" />
                   <div className="flex-1 min-w-0">
@@ -59,55 +58,8 @@ const HostMessages = () => {
                     <p className="text-sm text-muted-foreground truncate">{chat.lastMessage}</p>
                     <p className="text-xs text-muted-foreground mt-1">{chat.time}</p>
                   </div>
-                </button>
+                </Link>
               ))}
-            </div>
-          </div>
-
-          {/* Chat Window */}
-          <div className="lg:col-span-2 bg-card border border-border rounded-xl flex flex-col">
-            {/* Chat Header */}
-            <div className="p-4 border-b border-border flex items-center gap-3">
-              <img src={chats.find(c => c.id === selectedChat)?.image || chats[0].image} alt="Guest" className="w-10 h-10 rounded-full object-cover" />
-              <div>
-                <p className="font-semibold">{chats.find(c => c.id === selectedChat)?.guest || chats[0].guest}</p>
-                <p className="text-xs text-muted-foreground">Mercedes S-Class · Dec 28-30</p>
-              </div>
-            </div>
-
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {selectedChat === "1" ? messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.sender === "host" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[70%] ${msg.sender === "host" ? "bg-primary text-white" : "bg-secondary"} rounded-lg p-3`}>
-                    <p className="text-sm">{msg.text}</p>
-                    <p className={`text-xs mt-1 ${msg.sender === "host" ? "text-white/70" : "text-muted-foreground"}`}>
-                      {msg.time}
-                    </p>
-                  </div>
-                </div>
-              )) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground">
-                  <p>Select a conversation to view messages</p>
-                </div>
-              )}
-            </div>
-
-            {/* Message Input */}
-            <div className="p-4 border-t border-border">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 px-4 py-2 bg-secondary rounded-lg text-sm"
-                />
-                <button className="btn-primary px-6 py-2 rounded-lg flex items-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Send
-                </button>
-              </div>
             </div>
           </div>
         </div>
