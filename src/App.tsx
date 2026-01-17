@@ -47,6 +47,7 @@ import Messages from "./pages/Messages";
 import ActiveTrip from "./pages/ActiveTrip";
 import GetStarted from "./pages/GetStarted";
 import LearnMore from "./pages/LearnMore";
+import FoodDetail from "./pages/FoodDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ModeToggle from "./components/ModeToggle";
 // Host pages
@@ -95,6 +96,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/car/:id" element={<CarDetail />} />
           <Route path="/food" element={<FoodMenu />} />
+          <Route path="/food/:id" element={<FoodDetail />} />
           <Route path="/experiences" element={<Experiences />} />
           <Route path="/become-host" element={<BecomeHost />} />
           <Route path="/booking/:id" element={<Booking />} />

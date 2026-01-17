@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
@@ -81,7 +82,7 @@ const FoodMenu = () => {
         {/* Menu Grid */}
         <div className="flex overflow-x-auto md:grid md:grid-cols-1 lg:md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mb-8 pb-4 snap-x snap-mandatory">
           {filteredMenu.map(item => (
-            <div key={item.id} className="flex-shrink-0 w-64 md:w-auto snap-start border border-border rounded-xl overflow-hidden hover:shadow-card-hover smooth-transition">
+            <Link to={`/food/${item.id}`} key={item.id} className="flex-shrink-0 w-64 md:w-auto snap-start border border-border rounded-xl overflow-hidden hover:shadow-card-hover smooth-transition">
               <div className="aspect-video relative">
                 <img
                   src={item.image}
@@ -104,7 +105,10 @@ const FoodMenu = () => {
                 <div className="flex items-center justify-between mt-4">
                   <span className="font-semibold">₦{item.price.toLocaleString()}</span>
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart(item);
+                    }}
                     className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-full text-sm font-medium hover:bg-foreground/90 smooth-transition"
                   >
                     <Plus className="w-4 h-4" />
@@ -112,7 +116,7 @@ const FoodMenu = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { 
   User, Settings, Heart, MapPin, CreditCard, Bell, Shield, HelpCircle, 
-  LogOut, ChevronRight, Star, Car, Clock, FileText, Gift
+  LogOut, ChevronRight, Star, Car, Clock, FileText, Gift, MessageSquare
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -37,6 +37,7 @@ const Profile = () => {
     {
       title: "Support",
       items: [
+        { icon: MessageSquare, label: "Messages", path: "/messages", description: "Contact drivers or support" },
         { icon: HelpCircle, label: "Help Center", path: "/help", description: "Get help with your bookings and account" },
         { icon: Clock, label: "Support history", path: "/profile/support", description: "View past support tickets" },
       ],

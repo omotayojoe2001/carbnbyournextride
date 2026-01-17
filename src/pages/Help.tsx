@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
+import LiveChat from "@/components/LiveChat";
 import { useState } from "react";
 
 const Help = () => {
@@ -123,6 +124,7 @@ const Help = () => {
 
       <Footer />
       <MobileNav />
+      <LiveChat />
     </div>
   );
 };
