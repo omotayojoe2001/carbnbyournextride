@@ -7,6 +7,8 @@ import HostMobileNav from "@/components/HostMobileNav";
 
 const HostBookings = () => {
   const [activeTab, setActiveTab] = useState("pending");
+  const [showAcceptAlert, setShowAcceptAlert] = useState(false);
+  const [showDeclineAlert, setShowDeclineAlert] = useState(false);
 
   const bookings = {
     pending: [
@@ -48,6 +50,18 @@ const HostBookings = () => {
           <h1 className="text-3xl font-bold">Bookings</h1>
           <p className="text-muted-foreground mt-1">Manage your reservations</p>
         </div>
+
+        {/* Alerts */}
+        {showAcceptAlert && (
+          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full shadow-lg z-[60]">
+            <p className="text-sm font-medium">Booking accepted!</p>
+          </div>
+        )}
+        {showDeclineAlert && (
+          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-lg z-[60]">
+            <p className="text-sm font-medium">Booking declined!</p>
+          </div>
+        )}
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
@@ -105,13 +119,19 @@ const HostBookings = () => {
                       <td className="p-3">
                         <div className="flex gap-1">
                           <button 
-                            onClick={() => alert('Accepted!')}
+                            onClick={() => {
+                              setShowAcceptAlert(true);
+                              setTimeout(() => setShowAcceptAlert(false), 3000);
+                            }}
                             className="p-1.5 bg-green-500 text-white rounded text-xs hover:bg-green-600"
                           >
                             <Check className="w-3 h-3" />
                           </button>
                           <button 
-                            onClick={() => alert('Declined!')}
+                            onClick={() => {
+                              setShowDeclineAlert(true);
+                              setTimeout(() => setShowDeclineAlert(false), 3000);
+                            }}
                             className="p-1.5 bg-red-500 text-white rounded text-xs hover:bg-red-600"
                           >
                             <X className="w-3 h-3" />

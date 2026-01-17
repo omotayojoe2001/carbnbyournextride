@@ -9,6 +9,7 @@ const FoodDetail = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [showCartAlert, setShowCartAlert] = useState(false);
   
   const item = foodMenu.find(f => f.id === id) || foodMenu[0];
   
@@ -20,7 +21,9 @@ const FoodDetail = () => {
   ];
 
   const addToCart = () => {
-    alert(`Added ${quantity} ${item.name} to cart!`);
+    // Add to cart logic here
+    setShowCartAlert(true);
+    setTimeout(() => setShowCartAlert(false), 3000);
   };
 
   return (
@@ -41,6 +44,13 @@ const FoodDetail = () => {
             </button>
           ))}
         </div>
+
+        {/* Cart Alert */}
+        {showCartAlert && (
+          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full shadow-lg z-[60] animate-slide-up">
+            <p className="text-sm font-medium">Added {quantity} {item.name} to cart!</p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Content */}
