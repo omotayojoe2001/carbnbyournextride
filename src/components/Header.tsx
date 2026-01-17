@@ -12,6 +12,12 @@ const Header = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const isHomePage = location.pathname === "/";
 
+  const navTabs = [
+    { id: "cars", label: "Cars", icon: Car, path: "/" },
+    { id: "experiences", label: "Experiences", icon: Sparkles, path: "/experiences" },
+    { id: "food", label: "Food Menu", icon: Utensils, path: "/food" },
+  ];
+
   // Pages that should hide the header
   const hideHeaderPages = [
     '/car/',
@@ -24,7 +30,18 @@ const Header = () => {
     '/driver/',
     '/review/',
     '/messages',
-    '/host/',
+    '/host/messages/',
+    '/host/bookings/',
+    '/host/vehicles/add',
+    '/host/vehicles/',
+    '/host/earnings',
+    '/host/calendar',
+    '/host/profile',
+    '/host/settings',
+    '/host/policies',
+    '/host/reports',
+    '/host/drivers',
+    '/host/resources',
     '/receipts',
     '/promotions',
     '/safety-center',
@@ -44,15 +61,12 @@ const Header = () => {
       const currentScrollY = window.scrollY;
       
       if (shouldHideHeader) {
-        // On detail pages, show header when scrolling up
-        if (currentScrollY < lastScrollY && currentScrollY > 100) {
+        // On detail pages, show header when scrolling up (any upward movement)
+        if (currentScrollY < lastScrollY) {
           setIsVisible(true);
-        } else if (currentScrollY > lastScrollY || currentScrollY < 50) {
+        } else {
           setIsVisible(false);
         }
-      } else {
-        // On main pages, always show header
-        setIsVisible(true);
       }
       
       setLastScrollY(currentScrollY);
@@ -62,19 +76,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, shouldHideHeader]);
 
-  // Don't render header on detail pages unless scrolling up
+  // Always show header on main pages, hide on detail pages unless scrolling up
   if (shouldHideHeader && !isVisible) {
     return null;
   }
 
-  const navTabs = [
-    { id: "cars", label: "Cars", icon: Car, path: "/" },
-    { id: "experiences", label: "Experiences", icon: Sparkles, path: "/experiences" },
-    { id: "food", label: "Food Menu", icon: Utensils, path: "/food" },
-  ];
-
+  // Always show on main pages
   return (
-    <header className={`sticky top-0 z-50 bg-background border-b border-border ${shouldHideHeader ? 'fixed w-full' : ''}`}>
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="max-w-[1760px] mx-auto px-6 md:px-10 lg:px-20">
         {/* Top Row */}
         <div className="flex items-center justify-between h-20">
