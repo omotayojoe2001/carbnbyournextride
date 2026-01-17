@@ -49,6 +49,7 @@ import GetStarted from "./pages/GetStarted";
 import LearnMore from "./pages/LearnMore";
 import ScrollToTop from "./components/ScrollToTop";
 import ModeToggle from "./components/ModeToggle";
+import SmartHeader from "./components/SmartHeader";
 // Host pages
 import HostDashboard from "./pages/host/Dashboard";
 import HostVehicles from "./pages/host/Vehicles";
@@ -90,6 +91,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <SmartHeader />
         <ModeToggle />
         <Routes>
           <Route path="/" element={<Index />} />

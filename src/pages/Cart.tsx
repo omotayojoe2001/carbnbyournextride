@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
 
@@ -29,8 +28,6 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
-      <Header />
-
       <main className="max-w-[800px] mx-auto px-6 md:px-10 py-8">
         <Link to="/food" className="inline-flex items-center gap-2 text-sm font-medium mb-6 hover:underline">
           <ArrowLeft className="w-4 h-4" /> Back to menu
