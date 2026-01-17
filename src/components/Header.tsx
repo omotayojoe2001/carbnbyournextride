@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Car, Utensils, Sparkles } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
@@ -8,7 +8,64 @@ import LanguageSelector from "./LanguageSelector";
 const Header = () => {
   const location = useLocation();
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const isHomePage = location.pathname === "/";
+
+  // Pages that should hide the header
+  const hideHeaderPages = [
+    '/car/',
+    '/booking/',
+    '/trip/',
+    '/cart',
+    '/checkout',
+    '/payment',
+    '/booking-confirmation',
+    '/driver/',
+    '/review/',
+    '/messages',
+    '/host/',
+    '/receipts',
+    '/promotions',
+    '/safety-center',
+    '/report-issue',
+    '/about',
+    '/contact',
+    '/terms',
+    '/insurance',
+    '/driver-conduct',
+    '/help/',
+  ];
+
+  const shouldHideHeader = hideHeaderPages.some(page => location.pathname.includes(page));
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (shouldHideHeader) {
+        // On detail pages, show header when scrolling up
+        if (currentScrollY < lastScrollY && currentScrollY > 100) {
+          setIsVisible(true);
+        } else if (currentScrollY > lastScrollY || currentScrollY < 50) {
+          setIsVisible(false);
+        }
+      } else {
+        // On main pages, always show header
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, shouldHideHeader]);
+
+  // Don't render header on detail pages unless scrolling up
+  if (shouldHideHeader && !isVisible) {
+    return null;
+  }
 
   const navTabs = [
     { id: "cars", label: "Cars", icon: Car, path: "/" },
@@ -17,7 +74,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
+    <header className={`sticky top-0 z-50 bg-background border-b border-border ${shouldHideHeader ? 'fixed w-full' : ''}`}>
       <div className="max-w-[1760px] mx-auto px-6 md:px-10 lg:px-20">
         {/* Top Row */}
         <div className="flex items-center justify-between h-20">
