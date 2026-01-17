@@ -61,6 +61,8 @@ import HostEarnings from "./pages/host/Earnings";
 import HostProfile from "./pages/host/Profile";
 import HostSettings from "./pages/host/Settings";
 import HostCalendar from "./pages/host/Calendar";
+import HostReports from "./pages/host/Reports";
+import HostDrivers from "./pages/host/Drivers";
 // Help articles
 import HowToBook from "./pages/help/HowToBook";
 import CancellationPolicy from "./pages/help/CancellationPolicy";
@@ -167,8 +169,8 @@ const App = () => (
           <Route path="/host/profile" element={<HostProfile />} />
           <Route path="/host/settings" element={<HostSettings />} />
           <Route path="/host/policies" element={<HostSettings />} />
-          <Route path="/host/reports" element={<HostEarnings />} />
-          <Route path="/host/drivers" element={<HostVehicles />} />
+          <Route path="/host/reports" element={<HostReports />} />
+          <Route path="/host/drivers" element={<HostDrivers />} />
           <Route path="/host/resources" element={<HostMenu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

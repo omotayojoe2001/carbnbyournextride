@@ -43,7 +43,7 @@ const HostBookings = () => {
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Header />
 
-      <main className="max-w-[1400px] mx-auto px-6 md:px-10 py-8">
+      <main className="max-w-6xl mx-auto px-4 md:px-6 py-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Bookings</h1>
           <p className="text-muted-foreground mt-1">Manage your reservations</p>
@@ -67,53 +67,74 @@ const HostBookings = () => {
         </div>
 
         {/* Bookings List */}
-        <div className="space-y-4">
-          {bookings[activeTab as keyof typeof bookings].map((booking) => (
-            <div key={booking.id} className="bg-card border border-border rounded-xl p-6">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4 flex-1">
-                  <img src={booking.image} alt={booking.guest} className="w-16 h-16 rounded-full object-cover" />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-lg">{booking.guest}</h3>
-                      <span className="text-xs text-muted-foreground">#{booking.id}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-2">{booking.vehicle}</p>
-                    <div className="flex items-center gap-4 text-sm">
-                      <span className="font-medium">{booking.dates}</span>
-                      <span className="text-primary font-semibold">{booking.amount}</span>
-                    </div>
-                  </div>
-                </div>
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-secondary">
+                <tr>
+                  <th className="text-left p-3 font-semibold text-sm">Guest</th>
+                  <th className="text-left p-3 font-semibold text-sm hidden md:table-cell">Vehicle</th>
+                  <th className="text-left p-3 font-semibold text-sm hidden md:table-cell">Dates</th>
+                  <th className="text-left p-3 font-semibold text-sm">Amount</th>
+                  {activeTab === "pending" && <th className="text-left p-3 font-semibold text-sm">Action</th>}
+                  <th className="text-left p-3 font-semibold text-sm">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings[activeTab as keyof typeof bookings].map((booking) => (
+                  <tr key={booking.id} className="border-t border-border hover:bg-secondary/50">
+                    <td className="p-3">
+                      <div className="flex items-center gap-2">
+                        <img src={booking.image} alt={booking.guest} className="w-8 h-8 rounded-full object-cover" />
+                        <div>
+                          <p className="font-medium text-sm">{booking.guest}</p>
+                          <p className="text-xs text-muted-foreground md:hidden">{booking.vehicle} • {booking.dates}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-3 hidden md:table-cell">
+                      <p className="text-sm">{booking.vehicle}</p>
+                    </td>
+                    <td className="p-3 hidden md:table-cell">
+                      <p className="text-sm">{booking.dates}</p>
+                    </td>
+                    <td className="p-3">
+                      <p className="font-semibold text-sm text-primary">{booking.amount}</p>
+                    </td>
+                    {activeTab === "pending" && (
+                      <td className="p-3">
+                        <div className="flex gap-1">
+                          <button 
+                            onClick={() => alert('Accepted!')}
+                            className="p-1.5 bg-green-500 text-white rounded text-xs hover:bg-green-600"
+                          >
+                            <Check className="w-3 h-3" />
+                          </button>
+                          <button 
+                            onClick={() => alert('Declined!')}
+                            className="p-1.5 bg-red-500 text-white rounded text-xs hover:bg-red-600"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      </td>
+                    )}
 
-                {/* Actions */}
-                <div className="flex items-center gap-2">
-                  {activeTab === "pending" && (
-                    <>
-                      <button 
-                        onClick={() => alert('Booking accepted!')}
-                        className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-                      >
-                        <Check className="w-5 h-5" />
-                      </button>
-                      <button 
-                        onClick={() => alert('Booking declined!')}
-                        className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </>
-                  )}
-                  <Link to={`/host/bookings/${booking.id}`} className="p-2 bg-secondary rounded-lg hover:bg-secondary/80">
-                    <Eye className="w-5 h-5" />
-                  </Link>
-                  <Link to={`/host/messages?guest=${booking.guest}`} className="p-2 bg-secondary rounded-lg hover:bg-secondary/80">
-                    <MessageSquare className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+                    <td className="p-3">
+                      <div className="flex items-center gap-1">
+                        <Link to={`/car/${booking.id}`} className="p-1.5 hover:bg-secondary rounded text-xs">
+                          <Eye className="w-3 h-3" />
+                        </Link>
+                        <Link to={`/host/messages?guest=${booking.guest}`} className="p-1.5 hover:bg-secondary rounded text-xs">
+                          <MessageSquare className="w-3 h-3" />
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
 

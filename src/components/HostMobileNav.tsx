@@ -13,8 +13,8 @@ const HostMobileNav = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border md:hidden z-40">
-      <div className="flex justify-around items-center h-16">
+    <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border md:hidden z-40 px-2">
+      <div className="flex justify-around items-center h-16 max-w-md mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
@@ -22,7 +22,7 @@ const HostMobileNav = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center flex-1 h-full smooth-transition ${
+              className={`flex flex-col items-center justify-center flex-1 h-full smooth-transition px-1 ${
                 isActive ? "text-primary" : "text-muted-foreground"
               }`}
             >

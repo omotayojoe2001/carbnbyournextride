@@ -9,21 +9,21 @@ const HostEarnings = () => {
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Header />
 
-      <main className="max-w-[1200px] mx-auto px-6 md:px-10 py-8">
+      <main className="max-w-5xl mx-auto px-4 md:px-6 py-6">
         <Link to="/host/menu" className="inline-flex items-center gap-2 text-sm font-medium mb-6 hover:underline">
           <ArrowLeft className="w-4 h-4" /> Back to menu
         </Link>
 
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold">Earnings & Payouts</h1>
-          <button className="btn-primary px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-            <Download className="w-5 h-5" />
+          <button className="btn-primary px-4 py-2 rounded-lg font-semibold flex items-center gap-2 text-sm">
+            <Download className="w-4 h-4" />
             Download Report
           </button>
         </div>
 
         {/* Earnings Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <div className="bg-card border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-muted-foreground">Total Earnings</span>
@@ -58,6 +58,19 @@ const HostEarnings = () => {
             </div>
             <p className="text-2xl font-bold">₦65,000</p>
             <p className="text-xs text-purple-500 mt-1">+8% vs last month</p>
+          </div>
+        </div>
+
+        {/* Withdraw Section */}
+        <div className="bg-card border border-border rounded-xl p-4 mb-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-semibold">Available for Withdrawal</h3>
+              <p className="text-2xl font-bold text-green-500 mt-1">₦156,000</p>
+            </div>
+            <button className="btn-primary px-6 py-3 rounded-lg font-semibold">
+              Withdraw Funds
+            </button>
           </div>
         </div>
 
